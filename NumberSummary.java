@@ -22,10 +22,20 @@ public class NumberSummary implements NumberRangeSummarizer
 
     @Override
     public String summarizeCollection(Collection<Integer> input) 
+    // Method will receive collection : {1,3,6,7,8,12,13,14,15,21,22,23,24,31}
     {
-        String summarizedStr = "";
-        
+        String summarizedStr = "Resutlt: ";
+        boolean sequential = false, withinRange = false;
+        Integer previous = input.
+        for(Integer number : input)
+        {
+            if(number == previous)
+            {
+                continue;
+            }
+        }
         return summarizedStr;
+        // Output must be in the form : {1, 3, 6-8, 12-15, 21-24, 31}
     }
 
     public static void main(String[] args) 
