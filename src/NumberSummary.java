@@ -33,6 +33,8 @@ public class NumberSummary implements NumberRangeSummarizer
     
     /**
      * Converts and returns user input given as a string into a Collection of Interger data.
+     * This method assumes that the given string of input has numbers already ordered in ascending order. It
+     * does however cater for duplicate inputs.
      * 
      * @param input String in the form of a comma deliminated list of integers
      * @return A Collection<Integer> containing input string list of Integers after casting them to Integer
