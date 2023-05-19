@@ -2,14 +2,19 @@ import java.util.ArrayList;
 import java.util.Collection;
 import numberrangesummarizer.NumberRangeSummarizer;
 
+/**
+ * @author Mpfuno Clyde Bilankulu
+ * Class implements the NumberRangesSummarizer interface. The class contains methods
+ * allowing it to obtain string or Collection<Integer> data from the user to use the 
+ * summarizeCollection method to return a comma deliminated string of numbers. 
+ * Sequential numbers are grouped in ranges.
+ */
 
 public class NumberSummary implements NumberRangeSummarizer
 {
-    /*
-     * Global Variables
-     */
+    // Global Variables
 
-     // Constructors
+    // Constructors
 
      /*
       * Default constructor
@@ -18,12 +23,17 @@ public class NumberSummary implements NumberRangeSummarizer
       */
      public NumberSummary()
      {
-
+       
      }
 
-    /*
-    * Methods
-    */
+    // Methods
+    
+    /**
+     * Converts and returns user input given as a string into a Collection of Interger data.
+     * 
+     * @param input String in the form of a comma deliminated list of integers
+     * @return A Collection<Integer> containing input string list of Integers after casting them to Integer
+     */
     @Override
     public Collection<Integer> collect(String input) 
     {
@@ -45,16 +55,17 @@ public class NumberSummary implements NumberRangeSummarizer
      * <p>
      * This methods assumes that the provided input Collection of Integers does
      * not contain duplicated integers and is sorted in ascending order.
+     * 
      * @param input A comma separated list of Integers represented as a Collection
      * @return A comma separated list of Integers with grouped ranges of sequential numbers
      */
     @Override
-    public String summarizeCollection(Collection<Integer> input) 
-    // Method will receive collection : {1,3,6,7,8,12,13,14,15,21,22,23,24,31}
+    public String summarizeCollection(Collection<Integer> input)
     {
         String summarizedStr = "Resutlt: ";
-        boolean sequential = false, notInRange = true;
+        boolean sequential = false;
         Integer previous = ((ArrayList<Integer>)input).get(0);
+         
         for(Integer number : input)
         {
             /* If we add 1 to the previous number and the previous number is still less than the current 
@@ -63,9 +74,8 @@ public class NumberSummary implements NumberRangeSummarizer
              */
             if(previous + 1 < number)
             {
-                notInRange = true;
                 sequential = false;
-                summarizedStr = previous.toString() + ", ";
+                summarizedStr += previous.toString() + ", ";
                 previous = number; // Set previous to the value of the current number before incrementing.
             }
             /* Else if the numebers are equal after adding 1 to the previous number then the numbers are 
@@ -75,8 +85,7 @@ public class NumberSummary implements NumberRangeSummarizer
             {
                 if (sequential)
                 {
-                    previous = number;
-                    continue;
+                    previous = number; // Change value of previous number to currrent number and continue with loop
                 }
                 else
                 {
@@ -86,17 +95,12 @@ public class NumberSummary implements NumberRangeSummarizer
                 }
 
             }
-            else if(previous == number && !sequential)
-            {
-                continue;
-            }
-            
-            summarizedStr += "o" + number.toString();
-
-            summarizedStr += ", ";
+            /*
+             * Else the previous number and the current number are the equal, therefore we do not have to do
+             * anything but continue looping through the collection.
+             */
         }
-        return summarizedStr;
-        // Output must be in the form : {1, 3, 6-8, 12-15, 21-24, 31}
+        return summarizedStr + previous.toString();
     }
 
 
