@@ -1,6 +1,9 @@
+package src;
+
+import numberrangesummarizer.NumberRangeSummarizer;
 import java.util.ArrayList;
 import java.util.Collection;
-import numberrangesummarizer.NumberRangeSummarizer;
+
 
 /**
  * @author Mpfuno Clyde Bilankulu
@@ -33,8 +36,9 @@ public class NumberSummary implements NumberRangeSummarizer
      * 
      * @param input String in the form of a comma deliminated list of integers
      * @return A Collection<Integer> containing input string list of Integers after casting them to Integer
+     * @Override
      */
-    @Override
+    
     public Collection<Integer> collect(String input) 
     {
         // Simple solution
@@ -58,11 +62,12 @@ public class NumberSummary implements NumberRangeSummarizer
      * 
      * @param input A comma separated list of Integers represented as a Collection
      * @return A comma separated list of Integers with grouped ranges of sequential numbers
+     * @Override
      */
-    @Override
+    
     public String summarizeCollection(Collection<Integer> input)
     {
-        String summarizedStr = "Resutlt: ";
+        String summarizedStr = "";
         boolean sequential = false;
         Integer previous = ((ArrayList<Integer>)input).get(0);
          
